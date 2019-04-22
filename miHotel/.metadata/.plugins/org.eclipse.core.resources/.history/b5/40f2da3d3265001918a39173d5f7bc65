@@ -1,0 +1,25 @@
+package co.com.miHotel.entidad.persona;
+
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "persona")
+public class Persona implements Serializable{
+	
+	private int idPersona;
+	private int idTipoDocumento;
+	private String numeroDocumento;
+	private String primerNombre;
+	private String segundoNombre;
+	private String primerApellido;
+	private String segundoApellido;
+	private int telefono;
+	private String correo;
+	private Date fechaNacimiento;
+	private int edad;
+	private int idRol;
+	private int idEstadoPersona;
+}

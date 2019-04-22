@@ -1,0 +1,5 @@
+package co.com.miHotel.entidad.persona;
+
+public class TipoDocumento {
+
+}

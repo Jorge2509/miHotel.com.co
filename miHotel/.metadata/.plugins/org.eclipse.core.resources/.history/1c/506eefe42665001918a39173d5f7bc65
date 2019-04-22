@@ -1,0 +1,60 @@
+package co.com.miHotel.entidad.login;
+
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "login")
+public class Login implements Serializable {
+	
+	@Id
+	@GeneratedValue
+	private int idLogin;
+	
+	@Column(name = "usuario")
+	private String usuario;
+
+	@Column(name = "contrasena")
+	private String contrasena;
+
+	@Column(name = "idPersona")
+	private int idPersona;
+
+	public int getIdLogin() {
+		return idLogin;
+	}
+
+	public void setIdLogin(int idLogin) {
+		this.idLogin = idLogin;
+	}
+
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+
+	public String getContrasena() {
+		return contrasena;
+	}
+
+	public void setContrasena(String contrasena) {
+		this.contrasena = contrasena;
+	}
+
+	public int getIdPersona() {
+		return idPersona;
+	}
+
+	public void setIdPersona(int idPersona) {
+		this.idPersona = idPersona;
+	}
+
+}

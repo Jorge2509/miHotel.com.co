@@ -1,0 +1,38 @@
+package co.com.miHotel.entidad.estado;
+
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "estadoInmueble")
+public class EstadoInmueble implements Serializable {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "idEstadoInmueble", nullable = false)
+	private int idEstadoInmueble;
+
+	@Column(name = "descripcion", length = 50)
+	private String descripcion;
+
+	public int getIdTipoDocumento() {
+		return idEstadoInmueble;
+	}
+
+	public void setIdTipoDocumento(int idTipoDocumento) {
+		this.idEstadoInmueble = idTipoDocumento;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+}

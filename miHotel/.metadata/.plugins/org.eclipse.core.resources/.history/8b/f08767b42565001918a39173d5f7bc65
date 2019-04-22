@@ -1,0 +1,11 @@
+package co.com.miHotel.entidad.persona;
+
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+
+@Entity
+@Table()
+public class Persona implements Serializable{
+
+}
