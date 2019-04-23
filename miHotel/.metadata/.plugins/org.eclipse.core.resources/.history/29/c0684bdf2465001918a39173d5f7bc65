@@ -1,9 +1,0 @@
-package co.com.miHotel.entidad.persona;
-
-import javax.persistence.Entity;
-
-@Entity
-@Table()
-public class Persona {
-
-}

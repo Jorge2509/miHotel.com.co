@@ -1,7 +1,0 @@
-package co.com.miHotel.entidad.persona;
-
-@Entity
-@Table()
-public class Persona {
-
-}
