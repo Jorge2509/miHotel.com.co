@@ -4,10 +4,15 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import co.com.miHotel.entidad.persona.Persona;
 
 @Entity
 @Table(name = "login")
@@ -24,8 +29,9 @@ public class Login implements Serializable {
 	@Column(name = "contrasena")
 	private String contrasena;
 
-	@Column(name = "idPersona")
-	private int idPersona;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idPersona")
+	private Persona persona;
 
 	public int getIdLogin() {
 		return idLogin;
@@ -51,12 +57,11 @@ public class Login implements Serializable {
 		this.contrasena = contrasena;
 	}
 
-	public int getIdPersona() {
-		return idPersona;
+	public Persona getPersona() {
+		return persona;
 	}
 
-	public void setIdPersona(int idPersona) {
-		this.idPersona = idPersona;
+	public void setPersona(Persona persona) {
+		this.persona = persona;
 	}
-
 }

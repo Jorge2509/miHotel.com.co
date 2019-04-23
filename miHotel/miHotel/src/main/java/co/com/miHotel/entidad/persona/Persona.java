@@ -5,11 +5,16 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import co.com.miHotel.entidad.estado.EstadoPersona;
+import co.com.miHotel.entidad.rol.Rol;
 
 @Entity
 @Table(name = "persona")
@@ -20,9 +25,9 @@ public class Persona implements Serializable {
 	@Column(name = "idPersona", nullable = false)
 	private int idPersona;
 
-	@ManyToOne
-	@Column(name = "idTipoDocumento", nullable = false)
-	private int idTipoDocumento;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idTipoDocumento")
+	private TipoDocumento tipoDocumento;
 	
 	@Column(name = "numeroDocumento")
 	private String numeroDocumento;
@@ -51,11 +56,13 @@ public class Persona implements Serializable {
 	@Column(name = "edad")
 	private int edad;
 	
-	@Column(name = "idRol")
-	private int idRol;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idRol")
+	private Rol rol;
 	
-	@Column(name = "idEstadoPersona")
-	private int idEstadoPersona;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idEstadoPersona")
+	private EstadoPersona estadoPersona;
 
 	public int getIdPersona() {
 		return idPersona;
@@ -65,12 +72,12 @@ public class Persona implements Serializable {
 		this.idPersona = idPersona;
 	}
 
-	public int getIdTipoDocumento() {
-		return idTipoDocumento;
+	public TipoDocumento getTipoDocumento() {
+		return tipoDocumento;
 	}
 
-	public void setIdTipoDocumento(int idTipoDocumento) {
-		this.idTipoDocumento = idTipoDocumento;
+	public void setTipoDocumento(TipoDocumento tipoDocumento) {
+		this.tipoDocumento = tipoDocumento;
 	}
 
 	public String getNumeroDocumento() {
@@ -145,19 +152,19 @@ public class Persona implements Serializable {
 		this.edad = edad;
 	}
 
-	public int getIdRol() {
-		return idRol;
+	public Rol getRol() {
+		return rol;
 	}
 
-	public void setIdRol(int idRol) {
-		this.idRol = idRol;
+	public void setRol(Rol rol) {
+		this.rol = rol;
 	}
 
-	public int getIdEstadoPersona() {
-		return idEstadoPersona;
+	public EstadoPersona getEstadoPersona() {
+		return estadoPersona;
 	}
 
-	public void setIdEstadoPersona(int idEstadoPersona) {
-		this.idEstadoPersona = idEstadoPersona;
+	public void setEstadoPersona(EstadoPersona estadoPersona) {
+		this.estadoPersona = estadoPersona;
 	}
 }
