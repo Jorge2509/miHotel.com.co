@@ -1,4 +1,4 @@
-package co.com.miHotel.inmueble;
+package co.com.miHotel.entidad.inmueble;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
