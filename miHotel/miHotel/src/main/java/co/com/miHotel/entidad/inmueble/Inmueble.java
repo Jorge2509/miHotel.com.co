@@ -1,5 +1,6 @@
 package co.com.miHotel.entidad.inmueble;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -16,7 +17,7 @@ import co.com.miHotel.entidad.estado.EstadoInmueble;
 
 @Entity
 @Table(name="inmueble")
-public class Inmueble {
+public class Inmueble implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,4 +46,69 @@ public class Inmueble {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "idEstadoInmueble")
 	private EstadoInmueble estadoInmueble;
+
+	public int getIdInmueble() {
+		return idInmueble;
+	}
+
+	public void setIdInmueble(int idInmueble) {
+		this.idInmueble = idInmueble;
+	}
+
+	public TipoInmueble getTipoInmueble() {
+		return tipoInmueble;
+	}
+
+	public void setTipoInmueble(TipoInmueble tipoInmueble) {
+		this.tipoInmueble = tipoInmueble;
+	}
+
+	public int getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
+	}
+
+	public Date getFechaIngreso() {
+		return fechaIngreso;
+	}
+
+	public void setFechaIngreso(Date fechaIngreso) {
+		this.fechaIngreso = fechaIngreso;
+	}
+
+	public Double getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(Double precio) {
+		this.precio = precio;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+
+	public EstadoInmueble getEstadoInmueble() {
+		return estadoInmueble;
+	}
+
+	public void setEstadoInmueble(EstadoInmueble estadoInmueble) {
+		this.estadoInmueble = estadoInmueble;
+	}
+	
 }

@@ -12,6 +12,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "rol")
 public class Rol implements Serializable{
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="idRol", nullable=false)

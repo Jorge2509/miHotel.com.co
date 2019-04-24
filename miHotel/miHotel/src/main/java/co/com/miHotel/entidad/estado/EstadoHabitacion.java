@@ -1,4 +1,6 @@
-package co.com.miHotel.entidad.inmueble;
+package co.com.miHotel.entidad.estado;
+
+import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,23 +10,23 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "categoriaInmueble")
-public class CategoriaInmueble {
+@Table(name = "estadoHabitacion")
+public class EstadoHabitacion implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "idCategoriaInmueble", nullable = false)
-	private int idCategoriaInmueble;
-
-	@Column(name = "descripcion", length = 50)
+	@Column(name="idEstadoHabitacion", nullable=false)
+	private int idEstadoHabitacion;
+	
+	@Column(name="descripcion", length = 50)
 	private String descripcion;
 
-	public int getIdCategoriaInmueble() {
-		return idCategoriaInmueble;
+	public int getIdEstadoHabitacion() {
+		return idEstadoHabitacion;
 	}
 
-	public void setIdCategoriaInmueble(int idCategoriaInmueble) {
-		this.idCategoriaInmueble = idCategoriaInmueble;
+	public void setIdEstadoHabitacion(int idEstadoHabitacion) {
+		this.idEstadoHabitacion = idEstadoHabitacion;
 	}
 
 	public String getDescripcion() {
