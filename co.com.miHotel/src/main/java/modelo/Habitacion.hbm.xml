@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 02-may-2019 20:47:02 by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="modelo.Habitacion" table="habitacion" schema="public" optimistic-lock="version">
+        <id name="idHabitacion" type="int">
+            <column name="id_habitacion" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="estadoHabitacion" class="modelo.EstadoHabitacion" fetch="select">
+            <column name="id_estado_habitacion" not-null="true" />
+        </many-to-one>
+        <many-to-one name="tipoHabitacion" class="modelo.TipoHabitacion" fetch="select">
+            <column name="id_tipo_habitacion" not-null="true" />
+        </many-to-one>
+        <property name="piso" type="int">
+            <column name="piso" not-null="true" />
+        </property>
+        <property name="numeroHabitacion" type="string">
+            <column name="numero_habitacion" length="10" not-null="true" />
+        </property>
+        <property name="precioMaximo" type="double">
+            <column name="precio_maximo" precision="17" scale="17" not-null="true" />
+        </property>
+        <property name="precioMinimo" type="double">
+            <column name="precio_minimo" precision="17" scale="17" not-null="true" />
+        </property>
+        <set name="incidenteHabitacions" table="incidente_habitacion" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_habitacion" not-null="true" />
+            </key>
+            <one-to-many class="modelo.IncidenteHabitacion" />
+        </set>
+        <set name="inmuebleHabitacions" table="inmueble_habitacion" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_habitacion" not-null="true" />
+            </key>
+            <one-to-many class="modelo.InmuebleHabitacion" />
+        </set>
+        <set name="reservas" table="reserva" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_habitacion" not-null="true" />
+            </key>
+            <one-to-many class="modelo.Reserva" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 02-may-2019 20:47:02 by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="modelo.EstadoInmueble" table="estado_inmueble" schema="public" optimistic-lock="version">
+        <id name="idEstadoInmueble" type="int">
+            <column name="id_estado_inmueble" />
+            <generator class="assigned" />
+        </id>
+        <property name="descripcion" type="string">
+            <column name="descripcion" length="100" not-null="true" />
+        </property>
+        <set name="inmuebles" table="inmueble" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_estado_inmueble" not-null="true" />
+            </key>
+            <one-to-many class="modelo.Inmueble" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 02-may-2019 20:47:02 by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="modelo.Tienda" table="tienda" schema="public" optimistic-lock="version">
+        <id name="idCompra" type="int">
+            <column name="id_compra" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="estadoTienda" class="modelo.EstadoTienda" fetch="select">
+            <column name="id_estado_tienda" not-null="true" />
+        </many-to-one>
+        <many-to-one name="producto" class="modelo.Producto" fetch="select">
+            <column name="id_producto" not-null="true" />
+        </many-to-one>
+        <many-to-one name="reserva" class="modelo.Reserva" fetch="select">
+            <column name="id_reserva" not-null="true" />
+        </many-to-one>
+        <property name="cantidad" type="int">
+            <column name="cantidad" not-null="true" />
+        </property>
+        <property name="precioTotal" type="double">
+            <column name="precio_total" precision="17" scale="17" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

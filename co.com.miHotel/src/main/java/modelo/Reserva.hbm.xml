@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 02-may-2019 20:47:02 by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="modelo.Reserva" table="reserva" schema="public" optimistic-lock="version">
+        <id name="idReserva" type="int">
+            <column name="id_reserva" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="habitacion" class="modelo.Habitacion" fetch="select">
+            <column name="id_habitacion" not-null="true" />
+        </many-to-one>
+        <many-to-one name="persona" class="modelo.Persona" fetch="select">
+            <column name="id_persona" not-null="true" />
+        </many-to-one>
+        <property name="checkIn" type="timestamp">
+            <column name="check_in" length="35" not-null="true" />
+        </property>
+        <property name="checkOut" type="timestamp">
+            <column name="check_out" length="35" not-null="true" />
+        </property>
+        <property name="precio" type="double">
+            <column name="precio" precision="17" scale="17" not-null="true" />
+        </property>
+        <set name="tiendas" table="tienda" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_reserva" not-null="true" />
+            </key>
+            <one-to-many class="modelo.Tienda" />
+        </set>
+    </class>
+</hibernate-mapping>
