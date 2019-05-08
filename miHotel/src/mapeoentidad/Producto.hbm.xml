@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 05-may-2019 1:08:58 by Hibernate Tools 5.2.12.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class dynamic-insert="false" dynamic-update="false" mutable="true" name="modelo.Producto" optimistic-lock="version" polymorphism="implicit" schema="public" select-before-update="false" table="producto">
+        <id name="idProducto" type="int">
+            <column name="id_producto"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="modelo.SubcategoriaProducto" embed-xml="true" fetch="select" insert="true" name="subcategoriaProducto" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="id_subcategoria_producto" not-null="true"/>
+        </many-to-one>
+        <property generated="never" lazy="false" name="descripcion" optimistic-lock="true" type="string" unique="false">
+            <column length="100" name="descripcion" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="precioUnitario" optimistic-lock="true" type="double" unique="false">
+            <column name="precio_unitario" not-null="true" precision="17" scale="17"/>
+        </property>
+        <property generated="never" lazy="false" name="cantidad" optimistic-lock="true" type="int" unique="false">
+            <column name="cantidad" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="foto" optimistic-lock="true" type="string" unique="false">
+            <column length="200" name="foto"/>
+        </property>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="tiendas" optimistic-lock="true" sort="unsorted" table="tienda">
+            <key on-delete="noaction">
+                <column name="id_producto" not-null="true"/>
+            </key>
+            <one-to-many class="modelo.Tienda" embed-xml="true" not-found="exception"/>
+        </set>
+    </class>
+</hibernate-mapping>

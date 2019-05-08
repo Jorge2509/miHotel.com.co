@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 05-may-2019 1:08:58 by Hibernate Tools 5.2.12.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class dynamic-insert="false" dynamic-update="false" mutable="true" name="modelo.Habitacion" optimistic-lock="version" polymorphism="implicit" schema="public" select-before-update="false" table="habitacion">
+        <id name="idHabitacion" type="int">
+            <column name="id_habitacion"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="modelo.EstadoHabitacion" embed-xml="true" fetch="select" insert="true" name="estadoHabitacion" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="id_estado_habitacion" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="modelo.TipoHabitacion" embed-xml="true" fetch="select" insert="true" name="tipoHabitacion" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="id_tipo_habitacion" not-null="true"/>
+        </many-to-one>
+        <property generated="never" lazy="false" name="piso" optimistic-lock="true" type="int" unique="false">
+            <column name="piso" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="numeroHabitacion" optimistic-lock="true" type="string" unique="false">
+            <column length="10" name="numero_habitacion" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="precioMaximo" optimistic-lock="true" type="double" unique="false">
+            <column name="precio_maximo" not-null="true" precision="17" scale="17"/>
+        </property>
+        <property generated="never" lazy="false" name="precioMinimo" optimistic-lock="true" type="double" unique="false">
+            <column name="precio_minimo" not-null="true" precision="17" scale="17"/>
+        </property>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="incidenteHabitacions" optimistic-lock="true" sort="unsorted" table="incidente_habitacion">
+            <key on-delete="noaction">
+                <column name="id_habitacion" not-null="true"/>
+            </key>
+            <one-to-many class="modelo.IncidenteHabitacion" embed-xml="true" not-found="exception"/>
+        </set>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="inmuebleHabitacions" optimistic-lock="true" sort="unsorted" table="inmueble_habitacion">
+            <key on-delete="noaction">
+                <column name="id_habitacion" not-null="true"/>
+            </key>
+            <one-to-many class="modelo.InmuebleHabitacion" embed-xml="true" not-found="exception"/>
+        </set>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="reservas" optimistic-lock="true" sort="unsorted" table="reserva">
+            <key on-delete="noaction">
+                <column name="id_habitacion" not-null="true"/>
+            </key>
+            <one-to-many class="modelo.Reserva" embed-xml="true" not-found="exception"/>
+        </set>
+    </class>
+</hibernate-mapping>
