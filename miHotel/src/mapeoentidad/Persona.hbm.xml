@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 05-may-2019 1:08:58 by Hibernate Tools 5.2.12.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class dynamic-insert="false" dynamic-update="false" mutable="true" name="modelo.Persona" optimistic-lock="version" polymorphism="implicit" schema="public" select-before-update="false" table="persona">
+        <id name="idPersona" type="int">
+            <column name="id_persona"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="modelo.EstadoPersona" embed-xml="true" fetch="select" insert="true" name="estadoPersona" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="id_estado_persona" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="modelo.Rol" embed-xml="true" fetch="select" insert="true" name="rol" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="id_rol" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="modelo.TipoDocumento" embed-xml="true" fetch="select" insert="true" name="tipoDocumento" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="id_tipo_documento" not-null="true"/>
+        </many-to-one>
+        <property generated="never" lazy="false" name="numeroDocumento" optimistic-lock="true" type="string" unique="false">
+            <column length="20" name="numero_documento" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="primerNombre" optimistic-lock="true" type="string" unique="false">
+            <column name="primer_nombre" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="segundoNombre" optimistic-lock="true" type="string" unique="false">
+            <column name="segundo_nombre"/>
+        </property>
+        <property generated="never" lazy="false" name="primerApellido" optimistic-lock="true" type="string" unique="false">
+            <column name="primer_apellido" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="segundoApellido" optimistic-lock="true" type="string" unique="false">
+            <column name="segundo_apellido"/>
+        </property>
+        <property generated="never" lazy="false" name="telefono" optimistic-lock="true" type="int" unique="false">
+            <column name="telefono" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="correo" optimistic-lock="true" type="string" unique="false">
+            <column length="100" name="correo"/>
+        </property>
+        <property generated="never" lazy="false" name="fechaNacimiento" optimistic-lock="true" type="date" unique="false">
+            <column length="13" name="fecha_nacimiento" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="edad" optimistic-lock="true" type="java.lang.Short" unique="false">
+            <column name="edad"/>
+        </property>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="reservas" optimistic-lock="true" sort="unsorted" table="reserva">
+            <key on-delete="noaction">
+                <column name="id_persona" not-null="true"/>
+            </key>
+            <one-to-many class="modelo.Reserva" embed-xml="true" not-found="exception"/>
+        </set>
+        <one-to-one class="modelo.Login" constrained="false" embed-xml="true" name="login"/>
+    </class>
+</hibernate-mapping>

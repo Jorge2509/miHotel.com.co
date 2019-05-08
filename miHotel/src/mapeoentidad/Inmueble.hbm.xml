@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 05-may-2019 1:08:58 by Hibernate Tools 5.2.12.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class dynamic-insert="false" dynamic-update="false" mutable="true" name="modelo.Inmueble" optimistic-lock="version" polymorphism="implicit" schema="public" select-before-update="false" table="inmueble">
+        <id name="idInmueble" type="int">
+            <column name="id_inmueble"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="modelo.EstadoInmueble" embed-xml="true" fetch="select" insert="true" name="estadoInmueble" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="id_estado_inmueble" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="modelo.TipoInmueble" embed-xml="true" fetch="select" insert="true" name="tipoInmueble" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="id_tipo_inmueble" not-null="true"/>
+        </many-to-one>
+        <property generated="never" lazy="false" name="codigo" optimistic-lock="true" type="string" unique="false">
+            <column length="10" name="codigo" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="fechaIngreso" optimistic-lock="true" type="date" unique="false">
+            <column length="13" name="fecha_ingreso" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="precio" optimistic-lock="true" type="double" unique="false">
+            <column name="precio" not-null="true" precision="17" scale="17"/>
+        </property>
+        <property generated="never" lazy="false" name="descripcion" optimistic-lock="true" type="string" unique="false">
+            <column name="descripcion" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="foto" optimistic-lock="true" type="string" unique="false">
+            <column length="200" name="foto"/>
+        </property>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="tipoInmuebles" optimistic-lock="true" sort="unsorted" table="tipo_inmueble">
+            <key on-delete="noaction">
+                <column name="id_inmueble" not-null="true"/>
+            </key>
+            <one-to-many class="modelo.TipoInmueble" embed-xml="true" not-found="exception"/>
+        </set>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="inmuebleHabitacions" optimistic-lock="true" sort="unsorted" table="inmueble_habitacion">
+            <key on-delete="noaction">
+                <column name="id_inmueble" not-null="true"/>
+            </key>
+            <one-to-many class="modelo.InmuebleHabitacion" embed-xml="true" not-found="exception"/>
+        </set>
+    </class>
+</hibernate-mapping>
