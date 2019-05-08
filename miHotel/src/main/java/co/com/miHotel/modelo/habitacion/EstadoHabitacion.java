@@ -23,7 +23,7 @@ public class EstadoHabitacion implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	private int idEstadoHabitacion;
 	private String descripcion;
-	private Set habitacions = new HashSet(0);
+	private Set<Habitacion> habitacions = new HashSet<>();
 
 	public EstadoHabitacion() {
 	}
@@ -33,7 +33,7 @@ public class EstadoHabitacion implements java.io.Serializable {
 		this.descripcion = descripcion;
 	}
 
-	public EstadoHabitacion(int idEstadoHabitacion, String descripcion, Set habitacions) {
+	public EstadoHabitacion(int idEstadoHabitacion, String descripcion, Set<Habitacion> habitacions) {
 		this.idEstadoHabitacion = idEstadoHabitacion;
 		this.descripcion = descripcion;
 		this.habitacions = habitacions;
@@ -60,11 +60,11 @@ public class EstadoHabitacion implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "estadoHabitacion")
-	public Set getHabitacions() {
+	public Set<Habitacion> getHabitacions() {
 		return this.habitacions;
 	}
 
-	public void setHabitacions(Set habitacions) {
+	public void setHabitacions(Set<Habitacion> habitacions) {
 		this.habitacions = habitacions;
 	}
 

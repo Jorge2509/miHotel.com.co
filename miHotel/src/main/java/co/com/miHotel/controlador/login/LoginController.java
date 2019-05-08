@@ -19,7 +19,7 @@ public class LoginController {
 			System.out.println("Digite el usuario");
 		}
 		if (login.getContrasena() != null && login.getContrasena().equals(" ")) {
-			System.out.println("Digite la contraseña");
+			System.out.println("Digite la contrase&ntilde;a");
 		}
 		
 	}

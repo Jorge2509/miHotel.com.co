@@ -17,9 +17,14 @@ import javax.persistence.Table;
 @Table(name = "categoria_producto", schema = "public")
 public class CategoriaProducto implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8034268660043374844L;
+	
 	private int idCategoriaProducto;
 	private String descripcion;
-	private Set subcategoriaProductos = new HashSet(0);
+	private Set<SubcategoriaProducto> subcategoriaProductos = new HashSet<>();
 
 	public CategoriaProducto() {
 	}
@@ -29,7 +34,7 @@ public class CategoriaProducto implements java.io.Serializable {
 		this.descripcion = descripcion;
 	}
 
-	public CategoriaProducto(int idCategoriaProducto, String descripcion, Set subcategoriaProductos) {
+	public CategoriaProducto(int idCategoriaProducto, String descripcion, Set<SubcategoriaProducto>  subcategoriaProductos) {
 		this.idCategoriaProducto = idCategoriaProducto;
 		this.descripcion = descripcion;
 		this.subcategoriaProductos = subcategoriaProductos;
@@ -56,11 +61,11 @@ public class CategoriaProducto implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "categoriaProducto")
-	public Set getSubcategoriaProductos() {
+	public Set<SubcategoriaProducto>  getSubcategoriaProductos() {
 		return this.subcategoriaProductos;
 	}
 
-	public void setSubcategoriaProductos(Set subcategoriaProductos) {
+	public void setSubcategoriaProductos(Set<SubcategoriaProducto>  subcategoriaProductos) {
 		this.subcategoriaProductos = subcategoriaProductos;
 	}
 

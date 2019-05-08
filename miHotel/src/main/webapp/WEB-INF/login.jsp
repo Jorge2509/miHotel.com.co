@@ -44,8 +44,6 @@
     <a  href ="">olvidaste tu contraseña?</a>
     </center>
    
-    
-    
 </body>
 
 
