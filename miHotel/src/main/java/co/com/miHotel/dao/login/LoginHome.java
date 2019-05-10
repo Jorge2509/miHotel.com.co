@@ -3,6 +3,9 @@ package co.com.miHotel.dao.login;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
+import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 
 import org.apache.commons.logging.Log;
@@ -12,6 +15,7 @@ import co.com.miHotel.modelo.login.Login;
 
 /**
  * Home object for domain model class Login.
+ * 
  * @see modelo.Login
  * @author Hibernate Tools
  */
@@ -21,7 +25,13 @@ public class LoginHome {
 	private static final Log log = LogFactory.getLog(LoginHome.class);
 
 	@PersistenceContext
-	private EntityManager entityManager;
+	//private EntityManager entityManager;
+	
+
+	EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("users");
+	EntityManager entityManager = entityManagerFactory.createEntityManager();
+	
+	
 
 	public void persist(Login transientInstance) {
 		log.debug("persisting Login instance");
@@ -68,12 +78,29 @@ public class LoginHome {
 			throw re;
 		}
 	}
-	
-	/*
-	public Login find(String user, String pass) {
-		//Query para obtener la informacion del usuario por medio del usuario y contraseña ingresada
-		Query query = "select l from Login l where usuario = :" 
-		return  login;
+
+	public Login buscarLogin(String usuario, String contrasena) {
+		try {
+			entityManager.getTransaction().begin();
+			StringBuilder hql = new StringBuilder();
+
+			hql.append("SELECT l from Login l ");
+			hql.append(" where l.usuario = :usuario ");
+			hql.append(" AND l.contrasena = :contrasena");
+
+			Login login = (Login) entityManager.createQuery(hql.toString()).setParameter("usuario", usuario)
+					.setParameter("contrasena", contrasena).getSingleResult();
+			
+			
+		    
+		    entityManager.close();
+		    entityManagerFactory.close();
+			
+			
+			return login;
+		} catch (NoResultException e) {
+			System.out.println("Error : " + e.getMessage());
+			return new Login();
+		}
 	}
-	*/
 }
