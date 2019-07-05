@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="persistence"
+		transaction-type="RESOURCE_LOCAL">
+		<class>co.com.miHotel.modelo.CategoriaInmueble</class>
+		<class>co.com.miHotel.modelo.CategoriaProducto</class>
+		<class>co.com.miHotel.modelo.EstadoHabitacion</class>
+		<class>co.com.miHotel.modelo.EstadoIncidencia</class>
+		<class>co.com.miHotel.modelo.EstadoInmueble</class>
+		<class>co.com.miHotel.modelo.EstadoPersona</class>
+		<class>co.com.miHotel.modelo.EstadoTienda</class>
+		<class>co.com.miHotel.modelo.Habitacion</class>
+		<class>co.com.miHotel.modelo.IncidenteHabitacion</class>
+		<class>co.com.miHotel.modelo.IncidenteInmueble</class>
+		<class>co.com.miHotel.modelo.Inmueble</class>
+		<class>co.com.miHotel.modelo.InmuebleHabitacion</class>
+		<class>co.com.miHotel.modelo.Login</class>
+		<class>co.com.miHotel.modelo.MarcaInmueble</class>
+		<class>co.com.miHotel.modelo.MarcaProducto</class>
+		<class>co.com.miHotel.modelo.Persona</class>
+		<class>co.com.miHotel.modelo.Producto</class>
+		<class>co.com.miHotel.modelo.Reserva</class>
+		<class>co.com.miHotel.modelo.Rol</class>
+		<class>co.com.miHotel.modelo.SubcategoriaProducto</class>
+		<class>co.com.miHotel.modelo.Tienda</class>
+		<class>co.com.miHotel.modelo.TipoDocumento</class>
+		<class>co.com.miHotel.modelo.TipoHabitacion</class>
+		<class>co.com.miHotel.modelo.TipoInmueble</class>
+		
+		<properties>
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/miHotel" />
+			<property name="javax.persistence.jdbc.user" value="postgres" />
+			<property name="javax.persistence.jdbc.password" value="admin" />
+			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" /> <!-- DB Dialect -->
+			<property name="hibernate.hbm2ddl.auto" value="validate" /> <!-- create / create-drop / update -->
+
+			<property name="hibernate.show_sql" value="true" /> <!-- Show SQL in console -->
+			<property name="hibernate.format_sql" value="true" />
+			
+		</properties>
+	</persistence-unit>
+</persistence>

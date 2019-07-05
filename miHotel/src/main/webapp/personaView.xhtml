@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+</h:head>
+<h:body>
+
+
+<h1> Detalle Persona</h1>
+ <h:form> 
+<p:button outcome="registrarPersona" value="Nuevo"
+			icon="pi pi-star" style="margin-right:20px;">
+		</p:button>
+  <p:dataTable var="personaView" editable="true"
+			value="#{personaController.personaList}" scrollable="true" scrollWidth="100%" scrollHeight="400">
+
+			<p:column headerText="Tipo de Documento">
+				<h:outputText value="#{personaView.tipoDocumento.descripcion}" />
+			</p:column>
+			<p:column headerText="Documento">
+				<h:outputText value="#{personaView.numeroDocumento}" />
+			</p:column>
+			
+				<p:column headerText="Primer Nombre">
+				<h:outputText value="#{personaView.primerNombre}" />
+			</p:column>
+           
+ 
+			<p:column headerText="Segundo Nombre">
+				<h:outputText value="#{personaView.segundoNombre}" />
+			</p:column>
+			<p:column headerText="Primer Apellido">
+				<h:outputText value="#{personaView.primerApellido}" />
+			</p:column>
+			<p:column headerText="Segundo Apellido">
+				<h:outputText value="#{personaView.segundoApellido}" />
+			</p:column>
+			<p:column headerText="Correo">
+			<h:outputText value="#{personaView.correo}" />
+			</p:column>
+			
+		    <p:column headerText="Edad">
+			<h:outputText value="#{personaView.edad}" />
+			</p:column>
+			<p:column headerText="Fecha Nacimiento">
+			<h:outputText value="#{personaView.fechaNacimiento}" />
+			</p:column>
+			
+			<p:column headerText="Estado">
+			<h:outputText value="#{personaView.estadoPersona.descripcion}" />
+			</p:column>
+			
+			<p:column headerText="Rol">
+			<h:outputText value="#{personaView.rol.descripcion}" />
+			</p:column>
+		
+          <p:column>
+          <p:commandButton action ="#{personaController.editarPersonaId(personaView.idPersona)}" value ="Editar">
+          
+          </p:commandButton>
+          
+          </p:column>
+          
+          <p:column>
+          <p:commandButton action ="#{personaController.borrarPersonaId(personaView.idPersona)}" value ="Borrar">
+          </p:commandButton>
+          
+          </p:column>
+       
+	
+		</p:dataTable>
+   
+ 
+ </h:form>
+
+</h:body>
+</html>

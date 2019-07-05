@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+<h:body>
+	<h1>Actualizar Habitacion 	#{habitacionController.habitacion.idHabitacion} hola</h1>
+
+	<h:form>
+		<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+			<p:outputLabel for="tipo" value="Tipo Habitacion:" />
+			<p:selectOneMenu id="tipo"
+				value="#{habitacionController.habitacion.tipoHabitacion.idTipoHabitacion}"
+				style="width:125px">
+				<f:selectItem itemLabel="Select One" itemValue="" />
+				<f:selectItem itemValue="1" itemLabel="Sencilla" />
+				<f:selectItem itemValue="2" itemLabel="Doble" />
+				<f:selectItem itemValue="3" itemLabel="suit" />
+			</p:selectOneMenu>
+
+			<p:outputLabel value="Piso:" />
+			<p:inputText value="#{habitacionController.habitacion.piso}"
+				placeholder="Piso" />
+
+			<p:outputLabel value="Numero Habitacion" />
+			<p:inputText
+				value="#{habitacionController.habitacion.numeroHabitacion}"
+				placeholder="Numero Habitacion" />
+
+			<p:outputLabel value="Precio Minimo:" />
+			<p:inputText value="#{habitacionController.habitacion.precioMinimo}"
+				placeholder="Precio Minimo" />
+
+			<p:outputLabel value="Precio Maximo:" />
+			<p:inputText value="#{habitacionController.habitacion.precioMaximo}"
+				placeholder="Precio Maximo" />
+
+			<p:outputLabel for="estado" value="Estado Habitacion:" />
+			<p:selectOneMenu id="estado"
+				value="#{habitacionController.habitacion.estadoHabitacion.idEstadoHabitacion}"
+				style="width:125px">
+				<f:selectItem itemLabel="Select One" itemValue="" />
+				<f:selectItem itemLabel="Disponible" itemValue="1" />
+				<f:selectItem itemLabel="Ocupada" itemValue="2" />
+				<f:selectItem itemLabel="Mantenimiento" itemValue="3" />
+			</p:selectOneMenu>
+
+			<p:commandButton value="Guardar"
+				actionListener="#{habitacionController.guardar()}"
+				icon="pi pi-check" />
+			<p:button outcome="listarHabitacion" value="Cancelar" 
+				icon="pi pi-star" style="margin-right:20px;">
+			</p:button>
+		</h:panelGrid>
+
+	</h:form>
+</h:body>
+</html>

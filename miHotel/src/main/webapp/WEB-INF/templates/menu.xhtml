@@ -1,0 +1,25 @@
+	<ui:composition template="/WEB-INF/templates/layout.xhtml"
+     xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+     xmlns:p="http://primefaces.org/ui"
+>
+     <ui:define name="menu">
+         
+		<h:form id="form-contenido">
+				<p:megaMenu >
+					<p:submenu label="TV" icon="pi pi-check">
+						<p:column>
+							<p:submenu label="TV.1">
+								<p:menuitem value="TV.1.1" url="#" />
+								<p:menuitem value="TV.1.2" url="#" />
+							</p:submenu>
+							<p:submenu label="TV.2">
+								<p:menuitem value="TV.2.1" url="#" />
+								<p:menuitem value="TV.2.2" url="#" />
+								<p:menuitem value="TV.2.3" url="#" />
+							</p:submenu>
+						</p:column>
+						</p:submenu></p:megaMenu>
+			</h:form></ui:define></ui:composition>

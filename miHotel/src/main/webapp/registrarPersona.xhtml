@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+</h:head>
+
+<h:body>
+<h1>Registrar Persona</h1>
+<h:form  >
+
+        <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+			<p:outputLabel for="tipo" value="Tipo Documento:" />
+			<p:selectOneMenu id="tipo" value="#{personaController.persona.tipoDocumento.idTipoDocumento}"
+				style="width:125px">
+				<f:selectItem itemLabel="Select One" itemValue="" />
+				<f:selectItem itemValue="1" itemLabel="Cédula" />
+				<f:selectItem itemValue="2" itemLabel="Tarjeta de extranjeria" />
+				<f:selectItem itemValue="3" itemLabel="Dni" />
+				<f:selectItem itemValue="4" itemLabel="Pasaporte" />
+			</p:selectOneMenu>
+				<p:outputLabel value="Numero Documento :"/>
+			<p:inputText value="#{personaController.persona.numeroDocumento}" placeholder="Numero Documento"/>
+			
+			<p:outputLabel value="Primer Nombre :"/>
+			<p:inputText value="#{personaController.persona.primerNombre}" placeholder="primer nombre"/>
+			
+			<p:outputLabel value="Segundo Nombre"/>
+			<p:inputText value="#{personaController.persona.segundoNombre}" placeholder="segundo nombre"/>
+			
+			<p:outputLabel value="Primer Apellido:"/>
+			<p:inputText value="#{personaController.persona.primerApellido}" placeholder="Primer apellido"/>
+			
+			
+			<p:outputLabel for="mask" value="Fecha Nacimiento:" />
+        <p:calendar id="mask" value="#{personaController.persona.fechaNacimiento}" pattern="dd-MM-yyyy" mask="true" />
+			
+			<p:outputLabel value="Edad:"/>
+			<p:inputText value="#{personaController.persona.edad}" placeholder="Edad"/>
+			
+			
+			<p:outputLabel value="Correo:"/>
+			<p:inputText value="#{personaController.persona.correo}" placeholder="correo"/>
+			
+			<p:outputLabel value="Telefono:"/>
+			<p:inputText value="#{personaController.persona.telefono}" placeholder="telefono"/>
+			
+			<p:outputLabel for="estado" value="Estado Persona:" />
+			<p:selectOneMenu id="estado" value="#{personaController.persona.estadoPersona.idEstadoPersona}"
+				style="width:125px">
+				<f:selectItem itemLabel="Select One" itemValue="" />
+				<f:selectItem itemLabel="Activo" itemValue="1" />
+				<f:selectItem itemLabel="Inactivo" itemValue="2" />	
+			</p:selectOneMenu>
+			
+			<p:outputLabel for="rol" value="Rol:" />
+			<p:selectOneMenu id="rol" value="#{personaController.persona.rol.idRol}"
+				style="width:125px">
+				<f:selectItem itemLabel="Select One" itemValue="" />
+				<f:selectItem itemLabel="Superadmin" itemValue="1" />
+				<f:selectItem itemLabel="Administrador" itemValue="2" />	
+				<f:selectItem itemLabel="Recepcionista" itemValue="3" />
+				<f:selectItem itemLabel="usuario" itemValue="4" />	
+			</p:selectOneMenu>
+			
+			<p:commandButton value="Guardar"  actionListener="#{personaController.guardar()}" icon="pi pi-check" />
+			
+<!-- 			<h:outputLink value="personaView.xhtml"  actionListener="#{personaController.mostrarTodos()}">Mostrar personas Registradas</h:outputLink> -->
+			<p:button outcome="personaView" value="Cancelar"
+			icon="pi pi-star" style="margin-right:20px;">
+		</p:button>
+		</h:panelGrid>
+
+</h:form>
+
+</h:body>
+
+</html>

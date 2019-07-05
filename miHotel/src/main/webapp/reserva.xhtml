@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+</h:head>
+
+<h:body>
+	<h1>Reservas Habitaciones</h1>
+
+	<h:form id="frmReserva">
+		<h:panelGrid columns="4" style="margin-bottom:10px" cellpadding="5">
+			<p:outputLabel value="Tipo Documento" />
+			<p:selectOneMenu id="tipo"
+				value="#{personaController.persona.tipoDocumento.idTipoDocumento}"
+				style="width:125px">
+				<f:selectItem itemLabel="Select One" itemValue="" />
+				<f:selectItem itemValue="1" itemLabel="Cédula" />
+				<f:selectItem itemValue="2" itemLabel="Tarjeta de extranjeria" />
+				<f:selectItem itemValue="3" itemLabel="Dni" />
+				<f:selectItem itemValue="4" itemLabel="Pasaporte" />
+			</p:selectOneMenu>
+
+			<p:outputLabel value="Numero Documento :" />
+
+			<p:inputText value="#{reservaController.documento}"></p:inputText>
+			<p:commandButton icon="ui-icon-key" value="buscar"
+				action="#{reservaController.buscarPersona()}" process="@form" update=":frmReservaPer"/>
+		</h:panelGrid>
+	</h:form>
+
+	<h:form id="frmReservaPer">
+		<p:outputLabel value="Nombres" />
+		<p:inputText value="#{reservaController.persona.primerNombre}"
+			placeholder="primer nombre" />
+	</h:form>
+
+</h:body>
+
+</html>
