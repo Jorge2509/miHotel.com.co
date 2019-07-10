@@ -36,7 +36,8 @@ public class LoginController implements Serializable {
 
 			lo = loginDao.iniciarSesion(login);
 			if (lo != null) {
-				redireccion = "reserva.xhtml?faces-redirect=true";
+				FacesContext.getCurrentInstance().getExternalContext().redirect("reserva.xhtml");
+//				redireccion = "reserva.xhtml?faces-redirect=true";
 			}
 			else {
 				FacesContext.getCurrentInstance().addMessage(null,
@@ -44,7 +45,8 @@ public class LoginController implements Serializable {
 			}
 
 		} catch (Exception e) {
-			throw e;
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_WARN, "Error de redireccion", " credenciales incorrectas"));
 		}
 
 		finally {

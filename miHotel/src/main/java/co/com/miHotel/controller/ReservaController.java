@@ -12,9 +12,11 @@ import javax.faces.context.FacesContext;
 
 import org.primefaces.context.RequestContext;
 
+import co.com.miHotel.dao.HabitacionDAO;
 import co.com.miHotel.dao.PersonaDao;
 import co.com.miHotel.dao.ReservaDao;
 import co.com.miHotel.modelo.EstadoPersona;
+import co.com.miHotel.modelo.Habitacion;
 import co.com.miHotel.modelo.Persona;
 import co.com.miHotel.modelo.Rol;
 import co.com.miHotel.modelo.TipoDocumento;
@@ -25,9 +27,11 @@ public class ReservaController {
 
 	private String documento;
 	private List<Persona> personaList;
-	private List<String> documentos;
+	private List<String> listanumHabi;
 	private ReservaDao reservaDao;
 	private Persona persona = new Persona();
+	private Habitacion habitacion= new Habitacion();
+  
 
 	@PostConstruct
 	public void init() {
@@ -53,14 +57,44 @@ public class ReservaController {
 	// }
 
 	public void buscarPersona() {
+
 		if (documento != null && documento != "") {
 			persona = reservaDao.mostrarPersonas(documento);
-			if (persona!=null && !persona.equals("")) {
-				System.out.println("Persona no existe");
+
+			if (persona == null) {
+				FacesContext.getCurrentInstance().addMessage(null,
+						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "la persona no existe!!"));
+
+				try {
+
+					FacesContext.getCurrentInstance().getExternalContext().redirect("registrarPersona.xhtml");
+
+				} catch (Exception e) {
+					System.out.println("no direccionado");
+				}
+
 			}
+
 		}
 
 	}
+	
+	public List<String> buscarHabitacion(String numHabitacion) {
+		
+		listanumHabi = reservaDao.numHabitacion();
+		List<String> listaH= new ArrayList<>();
+		 for(int i=0;i<listanumHabi.size();i++) {
+				 if(listanumHabi.get(i).contains(numHabitacion)) {
+				 listaH.add(listanumHabi.get(i));
+				 }
+				 }
+				
+				 return listaH;
+				
+				 }
+		
+	
+	
 
 	public String getDocumento() {
 		return documento;
@@ -78,13 +112,7 @@ public class ReservaController {
 		this.personaList = personaList;
 	}
 
-	public List<String> getDocumentos() {
-		return documentos;
-	}
 
-	public void setDocumentos(List<String> documentos) {
-		this.documentos = documentos;
-	}
 
 	public ReservaDao getReservaDao() {
 		return reservaDao;

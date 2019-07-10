@@ -12,9 +12,12 @@
 </h:head>
 
 <h:body>
-	<h1>Reservas Habitaciones</h1>
+	
 
 	<h:form id="frmReserva">
+	<h1>Registro Usuario</h1>
+	<p:messages id="mensaje" showDetail="true" autoUpdate="true" 
+closable="true" globalOnly="true"/>
 		<h:panelGrid columns="4" style="margin-bottom:10px" cellpadding="5">
 			<p:outputLabel value="Tipo Documento" />
 			<p:selectOneMenu id="tipo"
@@ -36,9 +39,46 @@
 	</h:form>
 
 	<h:form id="frmReservaPer">
+	<h:panelGrid columns="4" style="margin-bottom:10px" cellpadding="5">
 		<p:outputLabel value="Nombres" />
-		<p:inputText value="#{reservaController.persona.primerNombre}"
+		<p:inputText size="40" maxlength="40" value="#{reservaController.persona.primerNombre.concat(' ').
+		concat(reservaController.persona.segundoNombre).concat(' ').concat(reservaController.persona.primerApellido)
+		.concat(' ').concat(reservaController.persona.segundoApellido)
+		
+		
+		}"
 			placeholder="primer nombre" />
+			
+			
+		<p:outputLabel value="Fecha de Nacimiento" />
+		<p:inputText size="40" maxlength="40" value="#{reservaController.persona.fechaNacimiento}"
+			placeholder="fecha Nacimiento" />
+		
+		<p:outputLabel value="Edad" />
+		<p:inputText size="40" maxlength="40" value="#{reservaController.persona.edad}"
+			placeholder="edad" />
+			
+		<p:outputLabel value="Telefono" />
+		<p:inputText size="40" maxlength="40" value="#{reservaController.persona.telefono}"
+			placeholder="telefono" />
+					
+		<p:outputLabel value="correo" />
+		<p:inputText size="40" maxlength="40" value="#{reservaController.persona.correo}"
+			placeholder="correo" />	
+			
+	</h:panelGrid>	
+	</h:form>
+	
+	
+	<h:form id="FormHabitacion">
+	<h1>Asignar Habitación</h1>
+		<h:panelGrid columns="4" style="margin-bottom:10px" cellpadding="5">
+	
+	
+	<p:outputLabel value="Numero Habitacion" />
+			<p:autoComplete id="doc" value="#{reservaController.documento}"
+	 completeMethod="#{reservaController.buscarHabitacion}"></p:autoComplete> 
+		</h:panelGrid>	
 	</h:form>
 
 </h:body>

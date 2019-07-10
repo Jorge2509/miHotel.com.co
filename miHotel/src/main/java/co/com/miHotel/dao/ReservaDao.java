@@ -19,29 +19,37 @@ public class ReservaDao {
 	public Persona mostrarPersonas(String numeroDocumento) {
 
 		// List<Persona> personaList = new ArrayList<>();
+		try {
+			if (!em.getTransaction().isActive()) {
+				em.getTransaction().begin();
+			}
 
-		if (!em.getTransaction().isActive()) {
-			em.getTransaction().begin();
+			Query query = em.createQuery("SELECT p FROM Persona p  WHERE p.numeroDocumento =:numeroDoc");
+			query.setParameter("numeroDoc", numeroDocumento);
+
+			persona = (Persona) query.getSingleResult();
 		}
 
-		Query query = em.createQuery("SELECT p FROM Persona p  WHERE p.numeroDocumento =:numeroDoc");
-		query.setParameter("numeroDoc", numeroDocumento);
-		persona = (Persona) query.getSingleResult();
+		catch (Exception e) {
+			persona = null;
+		}
 
 		return persona;
 	}
 
-	public List<String> documentos() {
+	public List<String> numHabitacion() {
 		List<String> results = new ArrayList<String>();
 
 		if (!em.getTransaction().isActive()) {
 			em.getTransaction().begin();
 		}
 
-		Query queryObj = em.createQuery("SELECT p.numeroDocumento FROM Persona p ");
+		Query queryObj = em.createQuery("SELECT h.numeroHabitacion FROM Habitacion h  WHERE h. .idEstadoHabitacion=1");
 		results = queryObj.getResultList();
 
 		return results;
 	}
+	
+	
 
 }
