@@ -25,10 +25,11 @@ public class ReservaController {
 
 	private String documento;
 	private List<Persona> personaList;
-	private List<Habitacion> listanumHabi;
+	private List<Habitacion> listanumHabi = new ArrayList<>();
 	private ReservaDao reservaDao;
 	private Persona persona = new Persona();
 	private Habitacion habitacion = new Habitacion();
+	private Integer tipoHabitacion;
 
 	@PostConstruct
 	public void init() {
@@ -37,7 +38,7 @@ public class ReservaController {
 		persona.setTipoDocumento(new TipoDocumento());
 		persona.setEstadoPersona(new EstadoPersona());
 		persona.setRol(new Rol());
-		habitaciones();
+		
 	}
 
 	// public List<String> buscarDocumento(String doc) {
@@ -92,7 +93,7 @@ public class ReservaController {
 	//
 	public void habitaciones() {
 
-		listanumHabi = reservaDao.listaHabitaciones();
+		listanumHabi = reservaDao.listaHabitaciones(tipoHabitacion);
 
 	}
 
@@ -142,6 +143,14 @@ public class ReservaController {
 
 	public void setPersona(Persona persona) {
 		this.persona = persona;
+	}
+
+	public Integer getTipoHabitacion() {
+		return tipoHabitacion;
+	}
+
+	public void setTipoHabitacion(Integer tipoHabitacion) {
+		this.tipoHabitacion = tipoHabitacion;
 	}
 
 }

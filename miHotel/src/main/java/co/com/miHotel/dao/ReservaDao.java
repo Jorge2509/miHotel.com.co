@@ -53,12 +53,13 @@ public class ReservaDao {
 	
 	
 	
-public List <Habitacion> listaHabitaciones(){
+public List <Habitacion> listaHabitaciones( Integer tipo){
 	List<Habitacion> results = new ArrayList<>();
 	if (!em.getTransaction().isActive()) {
 	em.getTransaction().begin(); }
 	
-	Query queryObj = em.createQuery("SELECT h FROM Habitacion h  WHERE h.estadoHabitacion.idEstadoHabitacion=1");
+	Query queryObj = em.createQuery("SELECT h FROM Habitacion h  WHERE h.estadoHabitacion.idEstadoHabitacion=1 AND h.tipoHabitacion.idTipoHabitacion=:idTipo");
+	queryObj.setParameter("idTipo", tipo);
 	results = queryObj.getResultList();
 	
 	return results;
