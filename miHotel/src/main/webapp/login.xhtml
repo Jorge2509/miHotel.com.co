@@ -22,7 +22,7 @@
   <p:inputText id="usuario"  value="#{loginController.login.usuario}" required="true"/>
   
   <p:outputLabel  for="contrasena" value="Contraseña"></p:outputLabel>
-  <p:inputText id="contrasena"  value="#{loginController.login.contrasena}"  required="true"/>
+  <p:password id="contrasena"  value="#{loginController.login.contrasena}"  required="true"/>
   
   <h:column/>
   <p:commandButton  icon="ui-icon-key" value="iniciar sesion" action="#{loginController.iniciarSesion()}"/>

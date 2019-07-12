@@ -16,10 +16,12 @@
 	z-index: 20 !important;
 	overflow: visible !important;
 }
+
 .ui-menubar {
-    background: white;
-    width: auto;
+	background: white;
+	width: auto;
 }
+
 .ui-layout-north .ui-layout-unit-content {
 	overflow: visible !important;
 }
@@ -35,36 +37,22 @@ body {
 		<p:layout fullPage="true">
 			<p:layoutUnit id="top" position="north" size="50">
 				<p:menubar>
-					<p:submenu label="File" icon="ui-icon-document">
-						<p:submenu label="New" icon="ui-icon-contact">
-							<p:menuitem value="Project" url="#" />
-							<p:menuitem value="Other" url="#" />
-						</p:submenu>
-						<p:menuitem value="Open" url="#" />
-						<p:menuitem value="Quit" url="#" />
+					<p:menuitem value="Reserva" url="../miHotel/reserva.xhtml" icon="ui-icon-calendar" />
+
+					<p:submenu label="Habitaciones" icon="ui-icon-pencil">
+						<p:menuitem value="Registrar" url="../miHotel/registrarHabitacion.xhtml" icon="ui-icon-arrowreturnthick-1-w"></p:menuitem>
+						<p:menuitem value="Ver detalle" url="../miHotel/listarHabitacion.xhtml" icon="ui-icon-arrowreturnthick-1-e"></p:menuitem>
 					</p:submenu>
 
-					<p:submenu label="Edit" icon="ui-icon-pencil">
-						<p:menuitem value="Undo" url="#"
-							icon="ui-icon-arrowreturnthick-1-w"></p:menuitem>
-						<p:menuitem value="Redo" url="#"
-							icon="ui-icon-arrowreturnthick-1-e"></p:menuitem>
-					</p:submenu>
-
-					<p:submenu label="Help" icon="ui-icon-help">
-						<p:menuitem value="Contents" url="#" />
-						<p:submenu label="Search" icon="ui-icon-search">
-							<p:submenu label="Text">
-								<p:menuitem value="Workspace" url="#" />
-							</p:submenu>
-							<p:menuitem value="File" url="#" />
-						</p:submenu>
+					<p:submenu label="Personas" icon="ui-icon-help">
+						<p:menuitem value="Registrar" url="../miHotel/registrarPersona.xhtml" />
+						<p:menuitem value="Ver detalle" url="../miHotel/personaView.xhtml" />
 					</p:submenu>
 				</p:menubar>
 			</p:layoutUnit>
 
 			<p:layoutUnit id="center" position="center">
-<ui:insert name="content">Put default content here, if any.</ui:insert>
+				<ui:insert name="content">Put default content here, if any.</ui:insert>
 			</p:layoutUnit>
 
 		</p:layout>

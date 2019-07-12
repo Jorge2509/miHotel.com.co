@@ -1,48 +1,42 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
+<ui:composition template="/WEB-INF/templates/layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
+	<ui:define name="content">
 
-<h:head>
-</h:head>
-<h:body>
-	<h1>Hello World PrimeFaces</h1>
+		<h:form id="formHabitacion">
+			<p:button outcome="registrarHabitacion" value="Nuevo"
+				icon="pi pi-star" style="margin-right:20px;">
+			</p:button>
+			<p:dataTable var="habitacion"
+				value="#{habitacionController.habitacionList}">
 
-	<h:form>
-		<p:button outcome="registrarHabitacion" value="Nuevo"
-			icon="pi pi-star" style="margin-right:20px;">
-		</p:button>
-		<p:dataTable var="habitacion"
-			value="#{habitacionController.habitacionList}">
-
-			<p:column headerText="Tipo Habitacion">
-				<h:outputText value="#{habitacion.tipoHabitacion.descripcion}" />
-			</p:column>
-			<p:column headerText="piso">
-				<h:outputText value="#{habitacion.piso}" />
-			</p:column>
-			<p:column headerText="Numero Habitacion">
-				<h:outputText value="#{habitacion.numeroHabitacion}" />
-			</p:column>
-			<p:column headerText="Precio Minimo">
-				<h:outputText value="#{habitacion.precioMinimo}" />
-			</p:column>
-			<p:column headerText="Precio Maximo">
-				<h:outputText value="#{habitacion.precioMaximo}" />
-			</p:column>
-			<p:column headerText="Estado">
-				<h:outputText value="#{habitacion.estadoHabitacion.descripcion}" />
-			</p:column>
-			<p:column>
-				<p:commandButton
-					action="#{habitacionController.update(habitacion.idHabitacion)}" value="Editar"></p:commandButton>
-			</p:column>
-		</p:dataTable>
-	</h:form>
-
-</h:body>
-</html>
+				<p:column headerText="Tipo Habitacion">
+					<h:outputText value="#{habitacion.tipoHabitacion.descripcion}" />
+				</p:column>
+				<p:column headerText="piso">
+					<h:outputText value="#{habitacion.piso}" />
+				</p:column>
+				<p:column headerText="Numero Habitacion">
+					<h:outputText value="#{habitacion.numeroHabitacion}" />
+				</p:column>
+				<p:column headerText="Precio Minimo">
+					<h:outputText value="#{habitacion.precioMinimo}" />
+				</p:column>
+				<p:column headerText="Precio Maximo">
+					<h:outputText value="#{habitacion.precioMaximo}" />
+				</p:column>
+				<p:column headerText="Estado">
+					<h:outputText value="#{habitacion.estadoHabitacion.descripcion}" />
+				</p:column>
+				<p:column>
+					<p:commandButton
+						action="#{habitacionController.update(habitacion.idHabitacion)}"
+						value="Editar"></p:commandButton>
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
