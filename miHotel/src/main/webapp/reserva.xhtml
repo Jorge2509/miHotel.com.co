@@ -6,74 +6,86 @@
 	xmlns:p="http://primefaces.org/ui">
 	<ui:define name="content">
 
-		<h:form id="formReserva">
-			<h1>Registro Usuario</h1>
-			<h:panelGrid columns="4" style="margin-bottom:10px" cellpadding="5">
-				<p:outputLabel value="Tipo Documento" />
-				<p:selectOneMenu id="tipo"
-					value="#{personaController.persona.tipoDocumento.idTipoDocumento}"
-					style="width:125px">
-					<f:selectItem itemLabel="Select One" itemValue="" />
-					<f:selectItem itemValue="1" itemLabel="Cédula" />
-					<f:selectItem itemValue="2" itemLabel="Tarjeta de extranjeria" />
-					<f:selectItem itemValue="3" itemLabel="Dni" />
-					<f:selectItem itemValue="4" itemLabel="Pasaporte" />
-				</p:selectOneMenu>
+	<h:form id="frmReserva">
+	<h1>Registro Usuario</h1>
+	
+		<h:panelGrid columns="4" style="margin-bottom:10px" cellpadding="5">
+			<p:outputLabel value="Tipo Documento" />
+			<p:selectOneMenu id="tipo"
+				value="#{personaController.persona.tipoDocumento.idTipoDocumento}"
+				style="width:125px">
+				<f:selectItem itemLabel="Select One" itemValue="" />
+				<f:selectItem itemValue="1" itemLabel="Cédula" />
+				<f:selectItem itemValue="2" itemLabel="Tarjeta de extranjeria" />
+				<f:selectItem itemValue="3" itemLabel="Dni" />
+				<f:selectItem itemValue="4" itemLabel="Pasaporte" />
+			</p:selectOneMenu>
 
-				<p:outputLabel value="Numero Documento :" />
+			<p:outputLabel value="Numero Documento :" />
 
-				<p:inputText value="#{reservaController.documento}"></p:inputText>
-				<p:commandButton icon="ui-icon-key" value="buscar"
-					action="#{reservaController.buscarPersona()}" process="@form"
-					update=":frmReservaPer" />
-			</h:panelGrid>
-		</h:form>
+			<p:inputText value="#{reservaController.documento}"></p:inputText>
+			<p:commandButton icon="ui-icon-key" value="buscar"
+				action="#{reservaController.buscarPersona()}" process="@form" update=":frmReservaPer"/>
+		</h:panelGrid>
+	</h:form>
 
-		<h:form id="frmReservaPer">
-			<h:panelGrid columns="4" style="margin-bottom:10px" cellpadding="5">
-				<p:outputLabel value="Nombres" />
-				<p:inputText size="40" maxlength="40"
-					value="#{reservaController.persona.primerNombre.concat(' ').
+	<h:form id="frmReservaPer">
+	<h:panelGrid columns="4" style="margin-bottom:10px" cellpadding="5">
+		<p:outputLabel value="Nombres" />
+		<p:inputText size="40" maxlength="40" value="#{reservaController.persona.primerNombre.concat(' ').
 		concat(reservaController.persona.segundoNombre).concat(' ').concat(reservaController.persona.primerApellido)
 		.concat(' ').concat(reservaController.persona.segundoApellido)
 		
 		
 		}"
-					placeholder="primer nombre" />
+			placeholder="primer nombre" />
+			
+			
+		<p:outputLabel value="Fecha de Nacimiento" />
+		<p:inputText size="40" maxlength="40" value="#{reservaController.persona.fechaNacimiento}"
+			placeholder="fecha Nacimiento" />
+		
+		<p:outputLabel value="Edad" />
+		<p:inputText size="40" maxlength="40" value="#{reservaController.persona.edad}"
+			placeholder="edad" />
+			
+		<p:outputLabel value="Telefono" />
+		<p:inputText size="40" maxlength="40" value="#{reservaController.persona.telefono}"
+			placeholder="telefono" />
+					
+		<p:outputLabel value="correo" />
+		<p:inputText size="40" maxlength="40" value="#{reservaController.persona.correo}"
+			placeholder="correo" />	
+			
+	</h:panelGrid>	
+	</h:form>
+	
+	
+	<h:form id="FormHabitacion">
+	<h1>Asignar Habitación</h1>
+		<h:panelGrid columns="4" style="margin-bottom:10px" cellpadding="5">
+	
+	 
+	 <p:dataList value="#{reservaController.listanumHabi}" var="habitacion" type="ordered"  itemType="none" paginator="true" rows="10" styleClass="paginated">
+        <f:facet name="header">
+            Habitaciones
+        </f:facet>
+         piso #{habitacion.piso}, numero Habitacion: #{habitacion.numeroHabitacion}
+     
+    </p:dataList>
+ 
+<!-- 	   <h:outputLabel for="grouped" value="Grouped:" /> -->
+<!--         <p:selectCheckboxMenu id="grouped" value="#{reservaController.habitacion.tipoHabitacion}" label="Cars" multiple="true" -->
+<!--                               filter="true" filterMatchMode="startsWith" panelStyle="width:250px"> -->
+<!--             <f:selectItems value="#{checkboxView.cars}" /> -->
+<!--         </p:selectCheckboxMenu> -->
+	 
+		</h:panelGrid>	
+		
+		
+		
+		
+	</h:form>
 
-
-				<p:outputLabel value="Fecha de Nacimiento" />
-				<p:inputText size="40" maxlength="40"
-					value="#{reservaController.persona.fechaNacimiento}"
-					placeholder="fecha Nacimiento" />
-
-				<p:outputLabel value="Edad" />
-				<p:inputText size="40" maxlength="40"
-					value="#{reservaController.persona.edad}" placeholder="edad" />
-
-				<p:outputLabel value="Telefono" />
-				<p:inputText size="40" maxlength="40"
-					value="#{reservaController.persona.telefono}"
-					placeholder="telefono" />
-
-				<p:outputLabel value="correo" />
-				<p:inputText size="40" maxlength="40"
-					value="#{reservaController.persona.correo}" placeholder="correo" />
-
-			</h:panelGrid>
-		</h:form>
-
-
-		<h:form id="FormHabitacion">
-			<h1>Asignar Habitación</h1>
-			<h:panelGrid columns="4" style="margin-bottom:10px" cellpadding="5">
-
-
-				<p:outputLabel value="Numero Habitacion" />
-				<p:autoComplete id="doc" value="#{reservaController.documento}"
-					completeMethod="#{reservaController.buscarHabitacion}"></p:autoComplete>
-			</h:panelGrid>
-
-		</h:form>
-	</ui:define>
+</ui:define>
 </ui:composition>

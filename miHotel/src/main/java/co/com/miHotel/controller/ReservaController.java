@@ -10,8 +10,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
-import org.primefaces.context.RequestContext;
-
 import co.com.miHotel.dao.HabitacionDAO;
 import co.com.miHotel.dao.PersonaDao;
 import co.com.miHotel.dao.ReservaDao;
@@ -27,11 +25,10 @@ public class ReservaController {
 
 	private String documento;
 	private List<Persona> personaList;
-	private List<String> listanumHabi;
+	private List<Habitacion> listanumHabi;
 	private ReservaDao reservaDao;
 	private Persona persona = new Persona();
-	private Habitacion habitacion= new Habitacion();
-  
+	private Habitacion habitacion = new Habitacion();
 
 	@PostConstruct
 	public void init() {
@@ -40,7 +37,7 @@ public class ReservaController {
 		persona.setTipoDocumento(new TipoDocumento());
 		persona.setEstadoPersona(new EstadoPersona());
 		persona.setRol(new Rol());
-
+		habitaciones();
 	}
 
 	// public List<String> buscarDocumento(String doc) {
@@ -78,23 +75,34 @@ public class ReservaController {
 		}
 
 	}
-	
-	public List<String> buscarHabitacion(String numHabitacion) {
-		
-		listanumHabi = reservaDao.numHabitacion();
-		List<String> listaH= new ArrayList<>();
-		 for(int i=0;i<listanumHabi.size();i++) {
-				 if(listanumHabi.get(i).contains(numHabitacion)) {
-				 listaH.add(listanumHabi.get(i));
-				 }
-				 }
-				
-				 return listaH;
-				
-				 }
-		
-	
-	
+
+	// public List<String> buscarHabitacion(String numHabitacion) {
+	//
+	// listanumHabi = reservaDao.numHabitacion();
+	// List<String> listaH= new ArrayList<>();
+	// for(int i=0;i<listanumHabi.size();i++) {
+	// if(listanumHabi.get(i).contains(numHabitacion)) {
+	// listaH.add(listanumHabi.get(i));
+	// }
+	// }
+	//
+	// return listaH;
+	//
+	// }
+	//
+	public void habitaciones() {
+
+		listanumHabi = reservaDao.listaHabitaciones();
+
+	}
+
+	public List<Habitacion> getListanumHabi() {
+		return listanumHabi;
+	}
+
+	public void setListanumHabi(List<Habitacion> listanumHabi) {
+		this.listanumHabi = listanumHabi;
+	}
 
 	public String getDocumento() {
 		return documento;
@@ -112,7 +120,13 @@ public class ReservaController {
 		this.personaList = personaList;
 	}
 
+	public Habitacion getHabitacion() {
+		return habitacion;
+	}
 
+	public void setHabitacion(Habitacion habitacion) {
+		this.habitacion = habitacion;
+	}
 
 	public ReservaDao getReservaDao() {
 		return reservaDao;

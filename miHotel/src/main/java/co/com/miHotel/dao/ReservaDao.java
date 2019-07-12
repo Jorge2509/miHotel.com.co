@@ -8,6 +8,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
 import co.com.miHotel.config.JPAUtil;
+import co.com.miHotel.modelo.Habitacion;
 import co.com.miHotel.modelo.Persona;
 
 public class ReservaDao {
@@ -37,19 +38,34 @@ public class ReservaDao {
 		return persona;
 	}
 
-	public List<String> numHabitacion() {
-		List<String> results = new ArrayList<String>();
-
-		if (!em.getTransaction().isActive()) {
-			em.getTransaction().begin();
-		}
-
-		Query queryObj = em.createQuery("SELECT h.numeroHabitacion FROM Habitacion h  WHERE h. .idEstadoHabitacion=1");
-		results = queryObj.getResultList();
-
-		return results;
-	}
+//	public List<String> numHabitacion() {
+//		List<String> results = new ArrayList<String>();
+//
+//		if (!em.getTransaction().isActive()) {
+//			em.getTransaction().begin();
+//		}
+//
+//		Query queryObj = em.createQuery("SELECT h.numeroHabitacion FROM Habitacion h  WHERE h. .idEstadoHabitacion=1");
+//		results = queryObj.getResultList();
+//
+//		return results;
+//	}
 	
 	
-
+	
+public List <Habitacion> listaHabitaciones(){
+	List<Habitacion> results = new ArrayList<>();
+	if (!em.getTransaction().isActive()) {
+	em.getTransaction().begin(); }
+	
+	Query queryObj = em.createQuery("SELECT h FROM Habitacion h  WHERE h.estadoHabitacion.idEstadoHabitacion=1");
+	results = queryObj.getResultList();
+	
+	return results;
+	
 }
+	
+}
+
+
+
