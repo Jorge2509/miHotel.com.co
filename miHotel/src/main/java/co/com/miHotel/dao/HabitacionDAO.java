@@ -8,7 +8,6 @@ import javax.persistence.Query;
 
 import co.com.miHotel.config.JPAUtil;
 import co.com.miHotel.modelo.Habitacion;
-import co.com.miHotel.modelo.Persona;
 
 public class HabitacionDAO {
 

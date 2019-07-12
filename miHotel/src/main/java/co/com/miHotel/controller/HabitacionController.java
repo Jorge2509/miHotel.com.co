@@ -1,5 +1,6 @@
 package co.com.miHotel.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -9,6 +10,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import co.com.miHotel.dao.HabitacionDAO;
+import co.com.miHotel.dao.TipoHabitacionDAO;
 import co.com.miHotel.modelo.EstadoHabitacion;
 import co.com.miHotel.modelo.Habitacion;
 import co.com.miHotel.modelo.TipoHabitacion;
@@ -22,31 +24,23 @@ public class HabitacionController {
 	private Habitacion habitacion = new Habitacion();
 	private FacesContext contex = FacesContext.getCurrentInstance();
 	private boolean isEdit = false;
+	private List<TipoHabitacion> tipoHabitacionList = new ArrayList<>();
+	private TipoHabitacionDAO tipoHabitacionDao = new TipoHabitacionDAO();
 
 	@PostConstruct
 	public void init() {
 		habitacionDAO = new HabitacionDAO();
 		habitacion.setTipoHabitacion(new TipoHabitacion());
 		habitacion.setEstadoHabitacion(new EstadoHabitacion());
-		mostrarTodos();
-	}
-
-	public void nuevo() {
-		try {
-			contex.getExternalContext().redirect("mihotel/registrarHabitacion.xhtml");
-		} catch (Exception e) {
-			System.out.println("Me voy al carajo, no funciona esta redireccion");
-
-		}
+		tipoHabitacionList = tipoHabitacionDao.findAll();
 	}
 
 	public void guardar() {
 		if (habitacion != null) {
-				habitacionDAO.guardarHabitacion(habitacion);
-				System.out.println("Guardado con exito");
-				habitacion = new Habitacion();
-		} 
-		
+			habitacionDAO.guardarHabitacion(habitacion);
+			System.out.println("Guardado con exito");
+			habitacion = new Habitacion();
+		}
 	}
 
 	public void update(Integer id) {
@@ -85,6 +79,14 @@ public class HabitacionController {
 
 	public void setHabitacion(Habitacion habitacion) {
 		this.habitacion = habitacion;
+	}
+
+	public List<TipoHabitacion> getTipoHabitacionList() {
+		return tipoHabitacionList;
+	}
+
+	public void setTipoHabitacionList(List<TipoHabitacion> tipoHabitacionList) {
+		this.tipoHabitacionList = tipoHabitacionList;
 	}
 
 }
