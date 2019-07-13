@@ -1,7 +1,10 @@
 package co.com.miHotel.controller;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -10,12 +13,16 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
+import org.primefaces.event.SelectEvent;
+import org.primefaces.event.UnselectEvent;
+
 import co.com.miHotel.dao.HabitacionDAO;
 import co.com.miHotel.dao.PersonaDao;
 import co.com.miHotel.dao.ReservaDao;
 import co.com.miHotel.modelo.EstadoPersona;
 import co.com.miHotel.modelo.Habitacion;
 import co.com.miHotel.modelo.Persona;
+import co.com.miHotel.modelo.Reserva;
 import co.com.miHotel.modelo.Rol;
 import co.com.miHotel.modelo.TipoDocumento;
 
@@ -30,6 +37,10 @@ public class ReservaController {
 	private Persona persona = new Persona();
 	private Habitacion habitacion = new Habitacion();
 	private Integer tipoHabitacion;
+	private List<String> listaH = new ArrayList<>();
+	private Reserva reserva = new Reserva();
+	private Date checkIn;
+	private Date checkOut;
 
 	@PostConstruct
 	public void init() {
@@ -38,21 +49,8 @@ public class ReservaController {
 		persona.setTipoDocumento(new TipoDocumento());
 		persona.setEstadoPersona(new EstadoPersona());
 		persona.setRol(new Rol());
-		
-	}
 
-	// public List<String> buscarDocumento(String doc) {
-	// documentos = reservaDao.documentos();
-	// List<String> listadoc= new ArrayList<>();
-	// for(int i=0;i<documentos.size();i++) {
-	// if(documentos.get(i).contains(doc)) {
-	// listadoc.add(documentos.get(i));
-	// }
-	// }
-	//
-	// return listadoc;
-	//
-	// }
+	}
 
 	public void buscarPersona() {
 
@@ -91,10 +89,36 @@ public class ReservaController {
 	//
 	// }
 	//
-	public void habitaciones() {
 
-		listanumHabi = reservaDao.listaHabitaciones(tipoHabitacion);
+	public void numeroHabitacion() {
+		listaH = reservaDao.numerosHabitacion(tipoHabitacion);
 
+	}
+
+	public void autocompletarDatosHabitacion(SelectEvent event) {
+
+		habitacion = reservaDao.autocompletarHabitacion(event.getObject().toString());
+	}
+
+	public void guardarReserva() {
+
+		if (reserva != null) {
+			
+			reserva.setPersona(persona);
+			reserva.setHabitacion(habitacion);
+			reserva.setCheckIn(new Timestamp(checkIn.getTime()));
+			reserva.setCheckOut(new Timestamp(checkOut.getTime()));
+			reservaDao.guardarReserva(reserva);
+			reserva = new Reserva();
+		}
+	}
+
+	public Reserva getReserva() {
+		return reserva;
+	}
+
+	public void setReserva(Reserva reserva) {
+		this.reserva = reserva;
 	}
 
 	public List<Habitacion> getListanumHabi() {
@@ -103,6 +127,14 @@ public class ReservaController {
 
 	public void setListanumHabi(List<Habitacion> listanumHabi) {
 		this.listanumHabi = listanumHabi;
+	}
+
+	public List<String> getListaH() {
+		return listaH;
+	}
+
+	public void setListaH(List<String> listaH) {
+		this.listaH = listaH;
 	}
 
 	public String getDocumento() {
@@ -151,6 +183,22 @@ public class ReservaController {
 
 	public void setTipoHabitacion(Integer tipoHabitacion) {
 		this.tipoHabitacion = tipoHabitacion;
+	}
+
+	public Date getCheckIn() {
+		return checkIn;
+	}
+
+	public void setCheckIn(Date checkIn) {
+		this.checkIn = checkIn;
+	}
+
+	public Date getCheckOut() {
+		return checkOut;
+	}
+
+	public void setCheckOut(Date checkOut) {
+		this.checkOut = checkOut;
 	}
 
 }
