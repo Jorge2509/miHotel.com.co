@@ -65,7 +65,7 @@
 			
 			<p:commandButton value="Guardar"  actionListener="#{personaController.guardar()}" icon="pi pi-check" />
 			<h:outputLink value="personaView.xhtml" actionListener="#{personaController.mostrarTodos()}" >Mostrar personas Registradas</h:outputLink>
-			<p:commandButton value="Cancelar"/>
+			<p:commandButton value="Cancelar" actionListener="#{personaController.volver()}"/>
 		</h:panelGrid>
 
 		</h:form>

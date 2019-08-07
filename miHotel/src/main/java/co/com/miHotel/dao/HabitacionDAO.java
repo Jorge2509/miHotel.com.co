@@ -50,7 +50,8 @@ public class HabitacionDAO {
 				StringBuilder consulta = new StringBuilder();
 				consulta.append("update Habitacion h Set h.precioMinimo=:precioMinimo ");
 				consulta.append(", h.precioMaximo=:precioMaximo ");
-				consulta.append(", h.estadoHabitacion=:estadoHabitacion ");
+				consulta.append(", h.estadoHabitacion.idEstadoHabitacion=:estadoHabitacion ");
+				consulta.append(", h.imagen=:imagen ");
 				consulta.append(" where h.idHabitacion=:id");
 
 				Query query = em.createQuery(consulta.toString());
@@ -58,6 +59,7 @@ public class HabitacionDAO {
 				query.setParameter("precioMinimo", habitacion.getPrecioMinimo());
 				query.setParameter("precioMaximo", habitacion.getPrecioMaximo());
 				query.setParameter("estadoHabitacion", habitacion.getEstadoHabitacion().getIdEstadoHabitacion());
+				query.setParameter("imagen", habitacion.getImagen());
 				int result = query.executeUpdate();
 
 				if (result > 0)

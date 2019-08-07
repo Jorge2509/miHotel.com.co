@@ -14,7 +14,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import org.primefaces.event.SelectEvent;
-import org.primefaces.event.UnselectEvent;
+
 
 import co.com.miHotel.dao.HabitacionDAO;
 import co.com.miHotel.dao.PersonaDao;
@@ -34,7 +34,7 @@ public class ReservaController {
 	private List<Persona> personaList;
 	private List<Habitacion> listanumHabi = new ArrayList<>();
 	private ReservaDao reservaDao;
-	private Persona persona = new Persona();
+	private Persona persona;
 	private Habitacion habitacion = new Habitacion();
 	private Integer tipoHabitacion;
 	private List<String> listaH = new ArrayList<>();
@@ -44,6 +44,7 @@ public class ReservaController {
 
 	@PostConstruct
 	public void init() {
+		persona = new Persona();
 		reservaDao = new ReservaDao();
 
 		persona.setTipoDocumento(new TipoDocumento());
@@ -53,7 +54,7 @@ public class ReservaController {
 	}
 
 	public void buscarPersona() {
-
+		
 		if (documento != null && documento != "") {
 			persona = reservaDao.mostrarPersonas(documento);
 
@@ -62,9 +63,10 @@ public class ReservaController {
 						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "la persona no existe!!"));
 
 				try {
-
+					
+					
 					FacesContext.getCurrentInstance().getExternalContext().redirect("registrarPersona.xhtml");
-
+					
 				} catch (Exception e) {
 					System.out.println("no direccionado");
 				}
@@ -74,6 +76,10 @@ public class ReservaController {
 		}
 
 	}
+	
+	
+	
+	
 
 	// public List<String> buscarHabitacion(String numHabitacion) {
 	//
@@ -112,6 +118,8 @@ public class ReservaController {
 			reserva = new Reserva();
 		}
 	}
+	
+	
 
 	public Reserva getReserva() {
 		return reserva;

@@ -48,6 +48,8 @@ public class Habitacion implements Serializable {
 	@JoinColumn(name="id_tipo_habitacion")
 	private TipoHabitacion tipoHabitacion;
 
+	@Column(name="imagen")
+	private String imagen;
 	public Habitacion() {
 	}
 
@@ -105,6 +107,14 @@ public class Habitacion implements Serializable {
 
 	public void setTipoHabitacion(TipoHabitacion tipoHabitacion) {
 		this.tipoHabitacion = tipoHabitacion;
+	}
+
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
 	}
 
 	@Override

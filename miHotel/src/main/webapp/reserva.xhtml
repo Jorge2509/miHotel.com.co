@@ -33,7 +33,7 @@
 		<h:form id="frmReservaPer">
 			<h:panelGrid columns="4" style="margin-bottom:10px" cellpadding="5">
 				<p:outputLabel value="Nombres" />
-				<p:inputText size="40" maxlength="40"
+				<p:inputText size="40" maxlength="40" disabled="true"
 					value="#{reservaController.persona.primerNombre.concat(' ').
 		concat(reservaController.persona.segundoNombre).concat(' ').concat(reservaController.persona.primerApellido)
 		.concat(' ').concat(reservaController.persona.segundoApellido)
@@ -71,19 +71,46 @@
 			<h:panelGrid columns="4" style="margin-bottom:10px" cellpadding="5">
 				<p:outputLabel for="tipo" value="Tipo Habitacion:" />
 				<p:selectOneMenu id="tipo"
-					value="#{reservaController.tipoHabitacion}"
-					style="width:125px">
+					value="#{reservaController.tipoHabitacion}" style="width:125px">
 					<f:selectItem itemLabel="Select One" itemValue="" />
 					<f:selectItem itemValue="1" itemLabel="Sencilla" />
 					<f:selectItem itemValue="2" itemLabel="Doble" />
 					<f:selectItem itemValue="3" itemLabel="suit" />
-					<p:ajax listener="#{reservaController.habitaciones}"
+					<p:ajax listener="#{reservaController.numeroHabitacion}"
 						update="listar"></p:ajax>
-					</p:selectOneMenu>
-					<h3 style="margin-top: 0">lista habitaciones</h3>
-    <p:orderList id="listar" value="#{reservaController.listanumHabi}" var="city" controlsLocation="none" itemLabel="#{city}" itemValue="#{city}" />
-    <p:commandButton value="Submit"  style="margin-top:5px" />
+				</p:selectOneMenu>
+				<h3 style="margin-top: 0">lista habitaciones</h3>
+				<p:orderList id="listar" value="#{reservaController.listaH}"
+					var="city" controlsLocation="none" itemLabel="#{city}"
+					itemValue="#{city}">
+					<p:ajax event="select" listener="#{reservaController.autocompletarDatosHabitacion}"
+						update="pmax pmin"/>
+				</p:orderList>
+
+				<p:outputLabel value="Precio Maximo" />
+				<p:inputText size="40" maxlength="40" id="pmax"
+					value="#{reservaController.habitacion.precioMaximo}"
+					placeholder="maximo" />
+
+				<p:outputLabel value="Precio Minimo" />
+				<p:inputText size="40" maxlength="40" id="pmin"
+					value="#{reservaController.habitacion.precioMinimo}"
+					placeholder="minimo" />
+                
+                <p:outputLabel value="Precio " />
+				<p:inputText size="40" maxlength="40" 
+					value="#{reservaController.reserva.precio}"
+					placeholder="precio" />
+				
+					 <p:outputLabel for="CheckIn" value="CheckIn:" />
+                 <p:calendar id="CheckIn" value="#{reservaController.checkIn}" pattern="dd/MM/yyyy HH:mm:ss"/>
+					
+					 <p:outputLabel for="CheckOut" value="CheckOut:" />
+                 <p:calendar id="CheckOut" value="#{reservaController.checkOut}" pattern="dd/MM/yyyy HH:mm:ss"/>
+						
 			</h:panelGrid>
+			
+				<p:commandButton value="Guardar" action="#{reservaController.guardarReserva()}" style="margin-top:5px" />
 		</h:form>
 
 	</ui:define>
