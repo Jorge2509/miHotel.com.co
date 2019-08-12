@@ -9,40 +9,43 @@
 
 	<h:head>
 		<!-- your css -->
-		<h:outputStylesheet library="css" name="style.css"/><!-- your css -->
-		<h:outputStylesheet library="css" name="primeflex.css"/>
+		<h:outputStylesheet library="css" name="style.css" />
+		<!-- your css -->
+		<h:outputStylesheet library="css" name="primeflex.css" />
 	</h:head>
 
 	<h:body>
+		<h:form id="frmPrincipal">
+			<p:layout fullPage="true">
+				<p:layoutUnit id="top" position="north" size="50">
+					<p:menubar>
+						<p:menuitem value="Reserva" url="../miHotel/reserva.xhtml"
+							icon="ui-icon-calendar" />
 
-		<p:layout fullPage="true">
-			<p:layoutUnit id="top" position="north" size="50">
-				<p:menubar>
-					<p:menuitem value="Reserva" url="../miHotel/reserva.xhtml"
-						icon="ui-icon-calendar" />
+						<p:submenu label="Habitaciones" icon="ui-icon-pencil">
+							<p:menuitem value="Registrar"
+								url="../miHotel/registrarHabitacion.xhtml"
+								icon="ui-icon-arrowreturnthick-1-w"></p:menuitem>
+							<p:menuitem value="Ver detalle"
+								url="../miHotel/listarHabitacion.xhtml"
+								icon="ui-icon-arrowreturnthick-1-e"></p:menuitem>
+						</p:submenu>
 
-					<p:submenu label="Habitaciones" icon="ui-icon-pencil">
-						<p:menuitem value="Registrar"
-							url="../miHotel/registrarHabitacion.xhtml"
-							icon="ui-icon-arrowreturnthick-1-w"></p:menuitem>
-						<p:menuitem value="Ver detalle"
-							url="../miHotel/listarHabitacion.xhtml"
-							icon="ui-icon-arrowreturnthick-1-e"></p:menuitem>
-					</p:submenu>
+						<p:submenu label="Personas" icon="ui-icon-help">
+							<p:menuitem value="Registrar"
+								url="../miHotel/registrarPersona.xhtml" />
+							<p:menuitem value="Ver detalle"
+								url="../miHotel/detallarPersona.xhtml" />
+						</p:submenu>
+					</p:menubar>
+				</p:layoutUnit>
 
-					<p:submenu label="Personas" icon="ui-icon-help">
-						<p:menuitem value="Registrar"
-							url="../miHotel/registrarPersona.xhtml" />
-						<p:menuitem value="Ver detalle" url="../miHotel/detallarPersona.xhtml" />
-					</p:submenu>
-				</p:menubar>
-			</p:layoutUnit>
+				<p:layoutUnit id="center" position="center">
+					<ui:insert name="content">Put default content here, if any.</ui:insert>
+				</p:layoutUnit>
 
-			<p:layoutUnit id="center" position="center">
-				<ui:insert name="content">Put default content here, if any.</ui:insert>
-			</p:layoutUnit>
-
-		</p:layout>
+			</p:layout>
+		</h:form>
 	</h:body>
 </f:view>
 </html>
