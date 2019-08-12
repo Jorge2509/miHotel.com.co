@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 
 import javax.faces.bean.SessionScoped;
@@ -20,12 +20,14 @@ import co.com.miHotel.modelo.TipoDocumento;
 @ManagedBean(name = "personaController")
 @SessionScoped
 public class PersonaController {
-
+    private String documento; 
 	private List<Persona> personaList;
 	private PersonaDao personaDao;
 	private Persona persona;
 	private String editPersonaId;
 	private Persona personaEdit;
+
+    private String message;
 
 	@PostConstruct
 	public void init() {
@@ -124,6 +126,10 @@ public class PersonaController {
 		personaDao.actualizarPersona(persona);
 		persona = new Persona();
 	}
+	
+	public void editar() {
+		System.out.println("Al fin estoy aca carajo");
+	}
 
 	public void editarPersonaId(Integer idPersona) throws IOException {
 		persona = new Persona();
@@ -132,7 +138,7 @@ public class PersonaController {
 			persona.getEstadoPersona();
 			persona.setRol(new Rol());
 			persona = personaDao.idPersona(idPersona);
-			FacesContext.getCurrentInstance().getExternalContext().redirect("editarPersona.xhtml");
+		FacesContext.getCurrentInstance().getExternalContext().redirect("editarPersona.xhtml");
 		}
 
 	}
@@ -142,11 +148,49 @@ public class PersonaController {
 		return personaDao.borrarPersona(idperson);
 
 	}
+	
+	
+public void buscarPersona() {
+		
+		if (documento != null && documento != "") {
+			persona = personaDao.mostrarPersonas(documento);
+
+			if (persona == null) {
+				FacesContext context = FacesContext.getCurrentInstance();
+		          message ="la persona no existe";
+		          FacesMessage msj = new FacesMessage("Error",  message);
+		            FacesContext.getCurrentInstance().addMessage(null, msj);
+		        }
+			}
+
+		}
+
+	
+	
 
 	/*********** GETTER'S & SETTER'S ********************/
 
 	public List<Persona> getPersonaList() {
 		return personaList;
+	}
+	
+	
+	
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public String getDocumento() {
+		return documento;
+	}
+
+	public void setDocumento(String documento) {
+		this.documento = documento;
 	}
 
 	public String getEditPersonaId() {

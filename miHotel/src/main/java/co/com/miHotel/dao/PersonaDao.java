@@ -16,6 +16,7 @@ public class PersonaDao {
 
 	EntityManager em = JPAUtil.conectar().createEntityManager();
 	private EntityTransaction transactionObj = em.getTransaction();
+	private Persona persona;
 
 	public String guardarPersona(Persona persona) {
 		try {
@@ -127,6 +128,30 @@ public class PersonaDao {
 		// }
 		return selecionarIdPersona;
 	}
+	
+	
+	public Persona mostrarPersonas(String numeroDocumento) {
+
+		// List<Persona> personaList = new ArrayList<>();
+		try {
+			if (!em.getTransaction().isActive()) {
+				em.getTransaction().begin();
+			}
+
+			Query query = em.createQuery("SELECT p FROM Persona p  WHERE p.numeroDocumento =:numeroDoc");
+			query.setParameter("numeroDoc", numeroDocumento);
+
+			persona = (Persona) query.getSingleResult();
+		}
+
+		catch (Exception e) {
+			persona = null;
+		}
+
+		return persona;
+	}
+
+
 
 	public String borrarPersona(int IdPersona) {
 		if (!transactionObj.isActive()) {

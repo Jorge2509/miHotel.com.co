@@ -5,25 +5,99 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 	<ui:define name="content">
-	
-	
 
+
+
+		<div class="p-grid sample-layout">
+
+			<div class="p-col-12 p-md-2">
+
+				<h:form>
+					<p:growl id="growl" showDetail="true" sticky="true" />
+					<h3>Encontrar Persona</h3>
+					<span class="ui-float-label"> <p:inputText
+							value="#{personaController.documento}"></p:inputText> <p:commandButton
+							icon="ui-icon-key" value="buscar"
+							action="#{personaController.buscarPersona()}" process="@form"
+							update=" frmPrincipal:frmActualizaPerson growl" />
+					</span>
+
+				</h:form>
+			</div>
+
+
+			<div class="p-col-12 p-md-6">
+				<h:form id="frmActualizaPerson">
+
+					<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+
+
+
+
+						<p:outputLabel value="Primer Nombre">
+						</p:outputLabel>
+						<p:inputText size="40" maxlength="40"
+							value="#{personaController.persona.primerNombre}"></p:inputText>
+
+
+						<p:outputLabel value="Segundo Nombre">
+						</p:outputLabel>
+						<p:inputText size="40" maxlength="40"
+							value="#{personaController.persona.segundoNombre}"></p:inputText>
+
+						<p:outputLabel value="Primer Apellido">
+						</p:outputLabel>
+						<p:inputText size="40" maxlength="40"
+							value="#{personaController.persona.primerApellido}"></p:inputText>
+
+						<p:outputLabel value="Segundo Apellido">
+						</p:outputLabel>
+						<p:inputText size="40" maxlength="40"
+							value="#{personaController.persona.segundoApellido}"></p:inputText>
+
+
+						<p:outputLabel value="Documento">
+						</p:outputLabel>
+						<p:inputText size="40" maxlength="40"
+							value="#{personaController.persona.numeroDocumento}"></p:inputText>
+
+						<p:outputLabel value="Telefono">
+						</p:outputLabel>
+						<p:inputText size="40" maxlength="40"
+							value="#{personaController.persona.telefono}"></p:inputText>
+
+						<p:outputLabel value="fecha Nacimiento">
+						</p:outputLabel>
+						<p:inputText size="40" maxlength="40"
+							value="#{personaController.persona.fechaNacimiento}"></p:inputText>
+
+						<p:outputLabel value="Edad">
+						</p:outputLabel>
+						<p:inputText size="40" maxlength="40"
+							value="#{personaController.persona.edad}"></p:inputText>
+
+						<p:outputLabel value="Correo">
+						</p:outputLabel>
+						<p:inputText size="40" maxlength="40"
+							value="#{personaController.persona.correo}"></p:inputText>
+    
  
-<h3>Vertical Alignment - Start</h3>
-<div class="p-grid p-align-start vertical-container">
-    <div class="p-col">
-        <div class="box">4</div>
-    </div>
-    <div class="p-col">
-        <div class="box">4</div>
-    </div>
-    <div class="p-col">
-        <div class="box">4</div>
-    </div>
-</div>
-
-
+  #{personaController.persona.idPersona}
  
+					
+					<p:commandButton value="Editar"
+							action="#{personaController.editarPersonaId(personaController.persona.idPersona)}" process="@this" />
+
+
+					</h:panelGrid>
+
+				</h:form>
+
+			</div>
+
+
+		</div>
+
+
 	</ui:define>
-	</ui:composition>
-	
+</ui:composition>
