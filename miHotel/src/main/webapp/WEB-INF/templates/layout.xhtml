@@ -8,25 +8,8 @@
 <f:view contentType="text/html">
 
 	<h:head>
-		<h:outputStylesheet name="main/css/showcase.css" />
-		<h:outputStylesheet name="main/css/sh.css" />
-
-		<style type="text/css">
-.ui-layout-north {
-	z-index: 20 !important;
-	overflow: visible !important;
-}
-.ui-menubar {
-	background: white;
-	width: auto;
-}
-.ui-layout-north .ui-layout-unit-content {
-	overflow: visible !important;
-}
-body {
-	background-color: #FFFFFF;
-}
-</style>
+		<!-- your css -->
+		<h:outputStylesheet library="css" name="style.css"/>
 	</h:head>
 
 	<h:body>
@@ -34,15 +17,21 @@ body {
 		<p:layout fullPage="true">
 			<p:layoutUnit id="top" position="north" size="50">
 				<p:menubar>
-					<p:menuitem value="Reserva" url="../miHotel/reserva.xhtml" icon="ui-icon-calendar" />
+					<p:menuitem value="Reserva" url="../miHotel/reserva.xhtml"
+						icon="ui-icon-calendar" />
 
 					<p:submenu label="Habitaciones" icon="ui-icon-pencil">
-						<p:menuitem value="Registrar" url="../miHotel/registrarHabitacion.xhtml" icon="ui-icon-arrowreturnthick-1-w"></p:menuitem>
-						<p:menuitem value="Ver detalle" url="../miHotel/listarHabitacion.xhtml" icon="ui-icon-arrowreturnthick-1-e"></p:menuitem>
+						<p:menuitem value="Registrar"
+							url="../miHotel/registrarHabitacion.xhtml"
+							icon="ui-icon-arrowreturnthick-1-w"></p:menuitem>
+						<p:menuitem value="Ver detalle"
+							url="../miHotel/listarHabitacion.xhtml"
+							icon="ui-icon-arrowreturnthick-1-e"></p:menuitem>
 					</p:submenu>
 
 					<p:submenu label="Personas" icon="ui-icon-help">
-						<p:menuitem value="Registrar" url="../miHotel/registrarPersona.xhtml" />
+						<p:menuitem value="Registrar"
+							url="../miHotel/registrarPersona.xhtml" />
 						<p:menuitem value="Ver detalle" url="../miHotel/personaView.xhtml" />
 					</p:submenu>
 				</p:menubar>
