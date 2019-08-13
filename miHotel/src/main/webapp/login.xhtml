@@ -8,17 +8,23 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
+<!-- your css -->
+		<h:outputStylesheet library="css" name="style.css" />
+		<!-- your css -->
+		<h:outputStylesheet library="css" name="primeflex.css" />
 <title> Login</title>
 </h:head>
 
 
 <h:body>
 
-<h1>Iniciar Sesion</h1>
-<h:form>
+
+<h:form   class="formLogin">
   <p:messages  autoUpdate="true"/>
-  <h:panelGrid  columns="2"> 
-  <p:outputLabel  for="usuario" value="Usuario"></p:outputLabel>
+
+   <h:panelGrid   > 
+  <h2>Iniciar Sesion</h2>
+  <p:outputLabel   for="usuario" value="Usuario"></p:outputLabel>
   <p:inputText id="usuario"  value="#{loginController.login.usuario}" required="true"/>
   
   <p:outputLabel  for="contrasena" value="Contraseña"></p:outputLabel>
@@ -27,6 +33,9 @@
   <h:column/>
   <p:commandButton  icon="ui-icon-key" value="iniciar sesion" action="#{loginController.iniciarSesion()}"/>
 </h:panelGrid>
+  
+ 
+ 
 </h:form>
 
 </h:body>
