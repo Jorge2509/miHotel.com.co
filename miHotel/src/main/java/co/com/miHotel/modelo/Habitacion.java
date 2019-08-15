@@ -17,7 +17,6 @@ import javax.persistence.NamedQuery;
  * 
  */
 @Entity
-@NamedQuery(name="Habitacion.findAll", query="SELECT h FROM Habitacion h")
 public class Habitacion implements Serializable {
 	private static final long serialVersionUID = 1L;
 
